@@ -1,4 +1,4 @@
-import { graph, config , connector , auth } from '@grafbase/sdk'
+import { graph, config , connector , auth} from '@grafbase/sdk'
 
 // Welcome to Grafbase!
 //
@@ -8,15 +8,15 @@ const g = graph.Standalone()
 
 // Data Sources - https://grafbase.com/docs/connectors
 //
- const pg = connector.Postgres('pg', { url: g.env('DATABASE_URL') })
- const oidc = auth.OpenIDConnect({ issuer: g.env('OIDC_ISSUER_URL') })
+const pg = connector.Postgres('pg', { url: g.env('DATABASE_URL') })
+const oidc = auth.OpenIDConnect({ issuer: g.env('OIDC_ISSUER_URL') })
  g.datasource(pg)
 
 // Resolvers - https://grafbase.com/docs/resolvers
-//
- g.query('helloWorld', {
- returns: g.string(),
- resolver: 'hello-world',
+
+g.query('helloWorld', {
+  returns: g.string(),
+   resolver: 'hello-world',
  })
 
 export default config({
@@ -24,7 +24,8 @@ export default config({
   // Authentication - https://grafbase.com/docs/auth
   auth: {
     // OpenID Connect
-     providers: [oidc],
+    
+    providers: [oidc],
     rules: (rules) => {
       rules.public()
     },
